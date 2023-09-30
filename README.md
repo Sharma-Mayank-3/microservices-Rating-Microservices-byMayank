@@ -7,6 +7,7 @@ and rating microservice, also establish a synchronous communication between thes
 
 # Rating Entity
 1. Create, getAll, findByUserId,  getByHotelId operation on Rating entity.
+2. Update and Delete Rating by Id.
 
 
 # Add Eureka Server Client Rating-Service to eureka server.
