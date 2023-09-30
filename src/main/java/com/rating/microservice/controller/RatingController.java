@@ -49,4 +49,25 @@ public class RatingController {
         return new ResponseEntity<>(ratingCreated, HttpStatus.OK);
     }
 
+    @GetMapping("/rating/{ratingId}")
+    public ResponseEntity<ApiResponse> getRatingById(@PathVariable("ratingId") int ratingId){
+        RatingDto byRatingId = this.ratingService.getByRatingId(ratingId);
+        ApiResponse ratingCreated = ApiResponse.builder().status(true).serviceName("rating-service").message("rating by id").data(byRatingId).build();
+        return new ResponseEntity<>(ratingCreated, HttpStatus.OK);
+    }
+
+    @PutMapping("/rating/{ratingId}")
+    public ResponseEntity<ApiResponse> updateRating(@RequestBody RatingDto ratingDto ,@PathVariable("ratingId") int ratingId){
+        RatingDto byRatingId = this.ratingService.updateRating(ratingDto,ratingId);
+        ApiResponse ratingCreated = ApiResponse.builder().status(true).serviceName("rating-service").message("update rating").data(byRatingId).build();
+        return new ResponseEntity<>(ratingCreated, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/rating/{ratingId}")
+    public ResponseEntity<ApiResponse> deleteRating(@PathVariable("ratingId") int ratingId){
+        String s = this.ratingService.deleteRating(ratingId);
+        ApiResponse ratingCreated = ApiResponse.builder().status(true).serviceName("rating-service").message("delete rating").data(s).build();
+        return new ResponseEntity<>(ratingCreated, HttpStatus.OK);
+    }
+
 }
